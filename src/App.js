@@ -10,6 +10,7 @@ const loading = (
 );
 
 const Login = React.lazy(() => import("./views/login/LoginIndex"));
+const Logout = React.lazy(() => import("./views/logout/Logout"));
 const ContainerLayout = React.lazy(() => import("./container/MainLayout"));
 
 function App() {
@@ -26,8 +27,29 @@ function App() {
 
           <Route
             exact
+            path="/logout"
+            name="Logout"
+            render={(props) => <Logout {...props} />}
+          />
+
+          <Route
+            exact
             path="/dashboard"
             name="Dashboard"
+            render={(props) => <ContainerLayout {...props} />}
+          />
+
+          <Route
+            exact
+            path="/product-registration"
+            name="Product Registration"
+            render={(props) => <ContainerLayout {...props} />}
+          />
+
+          <Route
+            exact
+            path="/inventory-list"
+            name="Inventory List"
             render={(props) => <ContainerLayout {...props} />}
           />
 

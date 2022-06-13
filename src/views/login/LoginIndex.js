@@ -6,26 +6,28 @@
 
 import React, { useState, useEffect } from "react";
 import { isEmpty, checkMaxLength } from "../../common/validation/Validation";
+import Loading from "../common-component/loading/Loading";
 
-function LoginIndex({ t }) {
+function LoginIndex() {
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [error, setError] = useState([]);
-
-  let customer_name = window.location.href.split("/")[3];
 
   useEffect(() => {
     //
   }, []);
 
   const handleLogin = () => {
+    setLoading(true);
     const isValidate = validateForm();
-    
-    if(isValidate) {
+
+    if (isValidate) {
+      setLoading(false);
       window.location.href = "/dashboard";
+    } else {
+      setLoading(false);
     }
   };
 
@@ -40,7 +42,6 @@ function LoginIndex({ t }) {
       isValidate = false;
     } else {
       setNameError("");
-      isValidate = true;
     }
 
     if (isEmpty(password)) {
@@ -48,78 +49,80 @@ function LoginIndex({ t }) {
       isValidate = false;
     } else {
       setPasswordError("");
-      isValidate = true;
     }
 
     return isValidate;
   };
 
   return (
-    <div className="page-wrapper">
-      <div className="container-fluid login-form">
-        <div className="card login-card">
-          <form id="login-form" className="login-style">
-            <div className="row">
-              <div className="col form-control-container">
-                <img src="/logo.png" alt="Login-logo" className="login-img" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col form-control-container">
-                <p className="text-center ptitle">ADMIN PANEL LOGIN</p>
-              </div>
-            </div>
-            <div className="row mb-4">
-              <div className="col-md-12 form-control-container">
-                <input
-                  type="text"
-                  autoComplete="new-password"
-                  className="form-control form-input-control"
-                  placeholder="Username"
-                  name="uname"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-              {nameError !== "" && (
-                <div className="col-md-12 form-control-container">
-                  <span className="text-danger">{nameError}</span>
+    <>
+      <Loading show={loading} />
+      <div className="page-wrapper">
+        <div className="container-fluid login-form">
+          <div className="card login-card">
+            <form id="login-form" className="login-style">
+              <div className="row">
+                <div className="col form-control-container">
+                  <img src="/logo.png" alt="Login-logo" className="login-img" />
                 </div>
-              )}
-            </div>
-            <div className="row mb-4">
-              <div className="col form-control-container">
-                <input
-                  type="password"
-                  autoComplete="new-password"
-                  className="form-control form-input-control"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
               </div>
-              {passwordError !== "" && (
-                <div className="col-md-12 form-control-container">
-                  <span className="text-danger">{passwordError}</span>
+              <div className="row">
+                <div className="col form-control-container">
+                  <p className="text-center ptitle">ADMIN PANEL LOGIN</p>
                 </div>
-              )}
-            </div>
-            <div className="row mb-5">
-              <div className="col form-control-container">
-                <button
-                  type="button"
-                  id="email_login"
-                  className="mx-auto d-block btn-blue login-button "
-                  onClick={handleLogin}
-                >
-                  Login
-                </button>
               </div>
-            </div>
-          </form>
+              <div className="row mb-4">
+                <div className="col-md-12 form-control-container">
+                  <input
+                    type="text"
+                    autoComplete="new-password"
+                    className="form-control form-input-control"
+                    placeholder="Username"
+                    name="uname"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+                {nameError !== "" && (
+                  <div className="col-md-12 form-control-container">
+                    <span className="text-danger">{nameError}</span>
+                  </div>
+                )}
+              </div>
+              <div className="row mb-4">
+                <div className="col form-control-container">
+                  <input
+                    type="password"
+                    autoComplete="new-password"
+                    className="form-control form-input-control"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                {passwordError !== "" && (
+                  <div className="col-md-12 form-control-container">
+                    <span className="text-danger">{passwordError}</span>
+                  </div>
+                )}
+              </div>
+              <div className="row mb-5">
+                <div className="col form-control-container">
+                  <button
+                    type="button"
+                    id="email_login"
+                    className="mx-auto d-block btn-blue login-button "
+                    onClick={handleLogin}
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

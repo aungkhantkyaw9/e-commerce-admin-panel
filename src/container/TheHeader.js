@@ -1,9 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Box, Breadcrumbs, Typography } from "@mui/material";
-
-// routes config
-import routes from "../routes";
 
 const TheHeader = () => {
   const dispatch = useDispatch();
@@ -16,25 +12,27 @@ const TheHeader = () => {
   };
 
   return (
-    <nav
-      className="navbar navbar-expand navbar-dark"
-      aria-label="Second navbar example"
-    >
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-4">
-            <a
-              href="#"
+    <nav className="navbar navbar-expand" aria-label="Header Navbar">
+      <div className="container-fluid mx-3" style={{ minHeight: "56px" }}>
+        <div className="row top-nav-bar" style={{ display: "flex" }}>
+          <div style={{ flex: "1" }}>
+            <button
               className="btn btn-sm nav-menu-button"
               onClick={toggleSidebar}
             >
               <i className="fas fa-bars fa-2l"></i>
-            </a>
+            </button>
           </div>
-          <div className="col-lg-5">
-            <Breadcrumbs aria-label="breadcrumb">
-              <Typography sx={{ color: "#4E57AA" }}>Dashboard</Typography>
-            </Breadcrumbs>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row-reverse",
+              flex: "1",
+              padding: "0",
+              alignItems: "center",
+            }}
+          >
+            <img src="/logo.png" alt="Login-logo" className="header-img" />
           </div>
         </div>
       </div>

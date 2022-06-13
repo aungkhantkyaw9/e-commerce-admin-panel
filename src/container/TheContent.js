@@ -11,6 +11,7 @@ const loading = (
 );
 
 const TheContent = () => {
+  console.log("oka")
   return (
     <main className="main page-main">
       <div className="container-fluid">

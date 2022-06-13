@@ -9,6 +9,22 @@ button {
   line-height: inherit;
 }
 
+::-webkit-scrollbar {
+  width: 0.438rem;
+  height: 0.625rem;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.188rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.625rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.625rem;
+  box-shadow: inset 0 0 0.188rem rgba(0, 0, 0, 0.5);
+  background-color: transparent;
+}
+
 .default-layout {
   display: flex;
   min-height: 100vh;
@@ -35,7 +51,7 @@ button {
   flex-shrink: 0;
   flex-grow: 1;
   min-width: 0;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 .card {
@@ -93,7 +109,7 @@ button.btn-blue:active {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     width: 100vw;
     height: 100vh;
     background-color: #000015;
@@ -165,11 +181,26 @@ form.login-style input {
 
 /********** Nav Bar ***********/
 .navbar {
-  background-color: #f5f6fa;
+  background-color: #b1aaf6;
+  box-shadow: 0 0.063rem 0 rgb(255 255 255 / 50%) inset,
+    0 -0.063rem 0 rgb(255 255 255 / 10%) inset, 0 -0.875rem 0 #4e4695,
+    0 0.1rem 0.25rem 0 rgb(0 0 0 / 50%);
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
+
+.top-nav-bar {
+  width: 100%;
+}
+
 .fa-2l {
   font-size: 1.5rem;
-  color: #cacad2;
+  color: #fff;
+}
+
+.fa-noti {
+  font-size: 1.5rem;
 }
 
 .nav-menu-button:focus {
@@ -182,7 +213,7 @@ form.login-style input {
   min-height: 100vh;
   transform: translate(-100%, 0);
   transition: 550ms;
-  z-index: 2;
+  z-index: 3;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -195,6 +226,11 @@ form.login-style input {
 .nav-menu.active {
   transform: translate(0px, 0);
   transition: 550ms;
+}
+
+.header-img {
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .avatar {
@@ -219,7 +255,7 @@ form.login-style input {
 
 .nav-text {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   list-style: none;
   height: 2.5rem;
@@ -231,12 +267,13 @@ form.login-style input {
   white-space: break-spaces;
   word-break: break-word;
   width: 100%;
-  height: 100%;
+  height: 2.5rem;
   display: flex;
   align-items: center;
 }
 
-.nav-text a:hover {
+.nav-text a:hover,
+.menu-link.active {
   color: #4e57aa;
   background: linear-gradient(270deg, #c4cce3 10%, transparent 50%) 100%;
   background-size: 200%;
@@ -250,20 +287,29 @@ form.login-style input {
 }
 
 .nav-menu-items {
-  width: 100%;
-  position: relative;
   display: flex;
   flex: 1 1;
   flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.menu-scroll {
+  overflow: hidden !important;
+}
+
+.menu-scroll:hover {
+  overflow-y: overlay !important;
 }
 
 .nav-text span {
   margin-left: 1rem;
 }
 
-.nav-text.sign-out {
+.nav-text.log-out {
   position: fixed;
-  bottom: 2rem;
+  bottom: 3.7rem;
+  width: 87%;
 }
 
 /********** Dashboard **********/
@@ -292,7 +338,7 @@ form.login-style input {
 }
 
 .img-block {
-  width: 3rem;
+  width: 2.5rem;
   margin-right: 1rem;
   text-align: center;
   color: #fff;
@@ -321,6 +367,25 @@ form.login-style input {
   vertical-align: middle;
 }
 
+.fa-dashboard-icon {
+  font-size: 1rem;
+}
+
+.cards {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media screen and (min-width: 920px) {
   .amt-text {
     font-size: 1.5rem;
@@ -333,7 +398,7 @@ form.login-style input {
   }
 }
 
-@media screen and (min-width: 577px) and (max-width: 675px) {
+@media screen and (min-width: 576px) and (max-width: 675px) {
   .title-text {
     font-size: 0.7rem;
   }
@@ -343,7 +408,7 @@ form.login-style input {
   }
 }
 
-@media screen and (max-width: 577px) {
+@media screen and (max-width: 575px) {
   .amt-text {
     font-size: 1.5rem;
   }
